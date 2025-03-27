@@ -1,6 +1,6 @@
 ﻿namespace Domain.common;
 
-public abstract class Aggregate<T>(T id) where T : EntityId 
+public abstract class Aggregate<T>(T id) : Entity<T>(id) where T : EntityId
 {
-    public T Id { get; init; } = id;
+    public new T Id { get; init; } = id;
 }

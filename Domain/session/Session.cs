@@ -7,7 +7,7 @@ using Domain.seat;
 
 namespace Domain.session;
 
-public class Session : Entity<SessionId>
+public class Session : Aggregate<SessionId>
 {
     public MovieId MovieId { get; init; }
     public SalaId SalaId { get; init; }
