@@ -1,8 +1,8 @@
 ﻿using Domain.common;
 
-namespace Domain.seat;
+namespace Domain.sala;
 
 public record SeatNumber(int Value) : ValueObject
 {
-    public int toInt() => Value;
+    public int ToInt() => Value;
 }

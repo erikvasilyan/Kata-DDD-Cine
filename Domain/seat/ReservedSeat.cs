@@ -2,15 +2,15 @@
 
 namespace Domain.seat;
 
-public class ReservedSeat : Seat {
+public class ReservedSeat : ReservationSeat {
     public CustomerId AssignedTo { get; init; }
 
-    private ReservedSeat(SeatId id, SeatNumber number, CustomerId assignedTo) : base(id, number) {
+    private ReservedSeat(SeatId id, CustomerId assignedTo) : base(id) {
         AssignedTo = assignedTo;
     }
     
-    public static ReservedSeat Create(SeatId id, SeatNumber number, CustomerId assignedTo) 
-        => new ReservedSeat(id, number, assignedTo);
+    public static ReservedSeat Create(SeatId id, CustomerId assignedTo) 
+        => new(id, assignedTo);
 
-    public override ReservedSeatDto ToDto() => new(Id, Number, AssignedTo);
+    public override ReservedSeatDto ToDto() => new(Id, AssignedTo);
 }

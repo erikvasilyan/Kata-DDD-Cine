@@ -1,3 +1,3 @@
 ﻿namespace Domain.seat;
 
-public record AvailableSeatDto(SeatId SeatId, SeatNumber SeatNumber) : SeatDto;
+public record AvailableSeatDto(SeatId SeatId) : SeatDto;

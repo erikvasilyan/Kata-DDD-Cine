@@ -2,4 +2,7 @@
 
 namespace Domain.movie;
 
-public record MovieId(Guid Value) : EntityId;
+public record MovieId(Guid Value) : EntityId
+{
+    public static MovieId Generate() => new(Guid.NewGuid());
+}

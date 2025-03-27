@@ -2,14 +2,13 @@
 
 namespace Domain.seat;
 
-public class AvailableSeat : Seat
+public class AvailableSeat : ReservationSeat
 {
-    private AvailableSeat(SeatId id, SeatNumber number) : base(id, number) { }
+    private AvailableSeat(SeatId id) : base(id) { }
     
-    public static AvailableSeat Create(SeatId id, SeatNumber number) => new(id, number);
+    public static AvailableSeat Create(SeatId id) => new(id);
 
-    public ReservedSeat Reserve(CustomerId customerId)
-        => ReservedSeat.Create(Id, Number, customerId);
+    public ReservedSeat Reserve(CustomerId customerId) => ReservedSeat.Create(Id, customerId);
 
-    public override AvailableSeatDto ToDto() => new(Id, Number);
+    public override AvailableSeatDto ToDto() => new(Id);
 }
