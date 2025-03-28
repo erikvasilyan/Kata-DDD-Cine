@@ -29,8 +29,8 @@ public class ReservationService
         var seat = sala.getSeat(seatNumber);
         var seatReservation = await SeatReservationRepository.GetBySeatId(seat.Id); 
         
-        seatReservation.Reserve(customer.Id);
+        var updatedReservation = seatReservation.Reserve(customer.Id);
         
-        await SeatReservationRepository.Update(seatReservation);
+        await SeatReservationRepository.Update(updatedReservation);
     }
 }
