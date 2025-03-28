@@ -22,11 +22,11 @@ public class ReservationService
         var sessionId = SessionId.fromString(requestSessionId); 
         var seatNumber = new SeatNumber(requestSeatNumber);
         
-        var customer = await CustomerRepository.GetById(customerId); // Customer 1, Customer 2
-        var session = await SessionRepository.GetById(sessionId); // Session 1
-        var sala = await SalaRepository.GetById(session.SalaId); // Sala 1
+        var customer = await CustomerRepository.GetById(customerId);
+        var session = await SessionRepository.GetById(sessionId);
+        var sala = await SalaRepository.GetById(session.SalaId);
         
-        var seat = sala.getSeat(seatNumber); // Seat 1, Seat 2
+        var seat = sala.getSeat(seatNumber);
         var seatReservation = await SeatReservationRepository.GetBySeatId(seat.Id); 
         
         seatReservation.Reserve(customer.Id);
