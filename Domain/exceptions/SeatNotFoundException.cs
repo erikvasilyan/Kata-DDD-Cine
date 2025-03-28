@@ -1,5 +1,6 @@
 ﻿using Domain.common;
 using Domain.sala;
+using Domain.seat;
 
 namespace Domain.exceptions;
 

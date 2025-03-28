@@ -1,6 +1,6 @@
 ﻿using Domain.common;
 
-namespace Domain.sala;
+namespace Domain.seat;
 
 public record SeatNumber(int Value) : ValueObject
 {

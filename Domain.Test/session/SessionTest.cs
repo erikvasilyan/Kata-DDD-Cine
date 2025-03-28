@@ -1,6 +1,4 @@
 ﻿using Domain.common;
-using Domain.customer;
-using Domain.exceptions;
 using Domain.movie;
 using Domain.sala;
 using Domain.seat;
@@ -11,35 +9,19 @@ namespace Domain.Test.session;
 public class SessionTest
 {
     [Fact]
-    public void reserve_seat_should_reserve_the_seat_for_the_given_customer()
+    public void start_booking_should_create_reservations_for_all_seats()
     {
-        var salaSeat = SalaSeat.Create(SeatId.Generate(), new SeatNumber(1));
-        var customerId = CustomerId.Generate();
-        var sut = createSut([salaSeat]);
-
-        var actual = sut.ReserveSeat(customerId, salaSeat.Id);
+        var sut = CreateSut();
+        var firstSeat = SeatId.Generate();
+        var secondSeat = SeatId.Generate();
+        var seats = new List<SeatId> { firstSeat, secondSeat };
+        var expected = "";
         
-        Assert.Equal(customerId, actual.AssignedTo);
+        var actual = sut.StartBooking(seats);
+        
+        Assert.Matches(expected, actual.ToString());
     }
     
-    [Fact]
-    public void reserve_seat_should_throw_when_seat_is_busy()
-    {
-        var salaSeat = SalaSeat.Create(SeatId.Generate(), new SeatNumber(1));
-        var customerId = CustomerId.Generate();
-        var sut = createSut([salaSeat]);
-        sut.ReserveSeat(customerId, salaSeat.Id);
-
-        Assert.Throws<SeatIsBusyException>(() => sut.ReserveSeat(customerId, salaSeat.Id));
-    }
-    
-    private static Session createSut(List<SalaSeat> seats)
-    {
-        return Session.Create(
-            SessionId.Generate(), 
-            MovieId.Generate(), 
-            SalaId.Generate(),
-            CDateTime.Now, 
-            seats);
-    }
+    private static Session CreateSut() 
+        => Session.Create(SessionId.Generate(), MovieId.Generate(), SalaId.Generate(), CDateTime.Now);
 }

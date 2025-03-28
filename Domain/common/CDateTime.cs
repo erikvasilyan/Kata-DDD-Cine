@@ -7,4 +7,6 @@ public class CDateTime : ValueObject
     private CDateTime(DateTime value) => Value = value;
     
     public static CDateTime Now => new(DateTime.Now);
+
+    public static CDateTime from(DateTime requestStartTime) => new(requestStartTime);
 }
